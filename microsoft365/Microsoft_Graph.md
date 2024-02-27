@@ -4,7 +4,7 @@
 
 Microsoft Graph est une passerelle qui vous permet d’accéder aux données et aux renseignements dans Microsoft 365. Elle fournit un modèle de programmabilité unifié qui vous permet d’accéder à la quantité impressionnante de données disponibles dans Microsoft 365, Windows et Enterprise Mobility + Security. Utiliser la richesse des données accessibles via Microsoft Graph pour créer des applications pour les organisations et les consommateurs qui interagissent avec des millions d’utilisateurs
 
-![Schéma de présentation de Graph](microsoft-graph-dataconnect-connectors-enhance.png)
+![Schéma de présentation de Graph](images/microsoft-graph-dataconnect-connectors-enhance.png)
 
 Il existe un point de terminaison unique à Microsoft Graph : [Microsoft Graph], permettant de regrouper toutes ses actions dans l'environnement Microsoft
 
@@ -21,7 +21,7 @@ Microsoft Graph propose des **API REST** et des bibliothèques clientes pour acc
 
 Pour en savoir plus, consultez [Principaux services et fonctionnalités dans Microsoft Graph].
 
-![Web of Microsoft Graph](microsoft-graph.png)
+![Web of Microsoft Graph](images/microsoft-graph.png)
 
 ## Installation de Microsoft Graph SDK
 
@@ -148,7 +148,7 @@ Connect-MgGraph -Scopes "User.Read.All"
 
 Cette commande va **ouvrir un navigateur sur votre machine** afin d'effectuer la connexion et d'accorder l'accès à l'application "Microsoft Graph PowerShell". Cela nécessite un accès avec des droits administrateur. Il faudra **accepter la requête**, comme sur l'exemple ci-dessous.
 
-![Microsoft Graph Login Page](powershell-microsoft-graph-03.png)
+![Microsoft Graph Login Page](images/powershell-microsoft-graph-03.png)
 
 Ensuite, un message s'affiche pour indiquer que la fenêtre peut être fermée : Authentication complete. You can return to the application. Feel free to close this browser tab.
 
@@ -224,17 +224,17 @@ Nous devons **inscrire une nouvelle application au sein d'Entra ID**, puis ensui
 
 À partir du portail Identity, dans Entra ID, cliquez sur **"Inscriptions d'applications"** à gauche puis sur le bouton **"Nouvelle inscription"**.
 
-![Entra ID_Ajout d'applications](image.png)
+![Entra ID_Ajout d'applications](images/image.png)
 
 Donnez un nom à cette application, par exemple "Script-PowerShell-Graph". Conserver l'option "Comptes dans cet annuaire d'organisation uniquement" pour l'option "Types de comptes pris en charge" et pour l'URI de redirection, laissez vide.
 
 Cliquez sur le bouton "S'inscrire".
 
-![alt text](image-1.png)
+![alt text](images/image-1.png)
 
 L'application est inscrite. Il y a deux informations qu'il faudra récupérer par la suite, car nous en aurons besoin lors de la connexion avec PowerShell : **ID d'applications (client)** et **ID de l'annuaire (locataire)**.
 
-![alt text](image-2.png)
+![alt text](images/image-2.png)
 
 Désormais, nous devons accorder des autorisations à notre application
 
@@ -242,11 +242,11 @@ Désormais, nous devons accorder des autorisations à notre application
 
 Toujours sur le portail Entra ID, au sein de notre application, cliquez sur **"API autorisées"** à gauche puis au centre sur **"Ajouter une autorisation"**.
 
-![alt text](image-3.png)
+![alt text](images/image-3.png)
 
 Nous souhaitons ajouter une autorisation **"Microsoft Graph"** et cela tombe bien c'est proposé directement.
 
-![alt text](image-4.png)
+![alt text](images/image-4.png)
 
 Cliquez sur **"Autorisations de l'application"**.
 
@@ -254,11 +254,11 @@ Ensuite, il faut rechercher les autorisations. Cela fonctionne sur le même prin
 
 Cliquez sur **"Ajouter des autorisations"** pour ajouter toutes les autorisations sélectionnées.
 
-![alt text](image-5.png)
+![alt text](images/image-5.png)
 
 Il faut que l'on accorde un **consentement administration** au niveau de l'organisation pour pouvoir bénéficier de ces droits dans notre application, à savoir notre script PowerShell. Cliquez sur le bouton **"Accorder un consentement d'administrateur pour Contoso"** et validez.
 
-![alt text](image-6.png)
+![alt text](images/image-6.png)
 
 Passons à la troisième étape : la gestion du certificat.
 
@@ -280,7 +280,7 @@ Ensuite, il faut exporter ce certificat sur notre machine, car il va falloir le 
 Export-Certificate -Cert $cert -FilePath "C:\TEMP\contoso.cer"
 ```
 
-![alt text](image-7.png)
+![alt text](images/image-7.png)
 
 Si vous avez besoin d'**utiliser ce certificat sur d'autres serveurs** (ce qui sera le cas si un autre serveur doit s'authentifier sur Microsoft Graph via PowerShell), vous devez l'**exporter au format PFX**. Si vous n'avez pas ce besoin, vous pouvez ignorer les deux commandes qui suivent.
 
@@ -300,7 +300,7 @@ Une fois que c'est fait, il suffira de **copier le PFX** sur les autres serveurs
 
 Retournez sur l'interface **Entra ID**, toujours dans notre application, et cliquez sur **"Certificats & secrets"** sur la gauche. Ensuite, cliquez sur **"Télécharger le certificat"** et chargez le fichier CER. Validez et il va apparaître dans la liste des certificats comme ceci :
 
-![alt text](image-8.png)
+![alt text](images/image-8.png)
 
 Copiez la valeur **"Empreinte numérique"** (Thumbprint), car nous allons en avoir besoin pour la suite.
 
@@ -333,7 +333,7 @@ Sur le principe, Microsoft Graph est prometteur notamment sur la gestion très f
 
 Si l'on souhaite obtenir toutes les permissions Microsoft Graph relatives à Microsoft Teams, on pourra exécuter la requête suivante (cela ne nécessite pas d'être authentifié auprès de Microsoft Graph).
 
-![alt text](image-9.png)
+![alt text](images/image-9.png)
 
 ```powershell
 Find-MgGraphPermission teams
@@ -364,7 +364,7 @@ En complément, vous pouvez retrouver des informations sur cette page qui réfé
 
 Document rédigé grâce au site [Microsoft Learn] et [IT-Connect]
 
-Axel RONDEAU - 27/02/24
+axid - 27/02/24
 
 [Microsoft Learn]: https://learn.microsoft.com/fr-fr/graph/overvie
 [Microsoft Graph]: https://graph.microsoft.com
