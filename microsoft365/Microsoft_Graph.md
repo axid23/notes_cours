@@ -122,7 +122,7 @@ Avec le mode **"accès délégué"**, il faut préciser les permissions dont vou
 
 ### Une connexion avec un accès application
 
-Avec le mode **"accès application"**, il est nécessaire d'**inscrire une nouvelle application** dans Entra ID afin de créer un **point de connexion**. Ensuite, il faudra accorder des autorisations à cette application pour que les scripts qui l'utilisent soient en mesure d'effectuer les actions déclarées dans votre code PowerShell. Pour se connecter via cette méthode, il faudra spécifier plusieurs informations : **ID du tenant**, **ID de l'application** et un **nom de certificat** ou **une empreinte de certificat** (qu'il faudra générer en amont).
+Avec le mode **"accès application"**, il est nécessaire d'**inscrire une nouvelle application** dans Identity Platform afin de créer un **point de connexion**. Ensuite, il faudra accorder des autorisations à cette application pour que les scripts qui l'utilisent soient en mesure d'effectuer les actions déclarées dans votre code PowerShell. Pour se connecter via cette méthode, il faudra spécifier plusieurs informations : **ID du tenant**, **ID de l'application** et un **nom de certificat** ou **une empreinte de certificat** (qu'il faudra générer en amont).
 
 ## PowerShell : Microsoft Graph via l'accès délégué
 
@@ -220,11 +220,11 @@ Disconnect-MgGraph
 
 ## PowerShell : Microsoft Graph via l'accès application
 
-Nous devons **inscrire une nouvelle application au sein d'Entra ID**, puis ensuite lui **accorder des autorisations**. Cette application sera notre point d'entrée avec PowerShell.
+Nous devons **inscrire une nouvelle application au sein d'Identity Platform**, puis ensuite lui **accorder des autorisations**. Cette application sera notre point d'entrée avec PowerShell.
 
-À partir du portail Identity, dans Entra ID, cliquez sur **"Inscriptions d'applications"** à gauche puis sur le bouton **"Nouvelle inscription"**.
+À partir du portail Identity, dans Identity Platform, cliquez sur **"Inscriptions d'applications"** à gauche puis sur le bouton **"Nouvelle inscription"**.
 
-![Entra ID_Ajout d'applications](images/image.png)
+![Identity Platform_Ajout d'applications](images/image.png)
 
 Donnez un nom à cette application, par exemple "Script-PowerShell-Graph". Conserver l'option "Comptes dans cet annuaire d'organisation uniquement" pour l'option "Types de comptes pris en charge" et pour l'URI de redirection, laissez vide.
 
@@ -240,7 +240,7 @@ Désormais, nous devons accorder des autorisations à notre application
 
 ### Attribuer des autorisations Microsoft Graph à l'application
 
-Toujours sur le portail Entra ID, au sein de notre application, cliquez sur **"API autorisées"** à gauche puis au centre sur **"Ajouter une autorisation"**.
+Toujours sur le portail Identity Platform, au sein de notre application, cliquez sur **"API autorisées"** à gauche puis au centre sur **"Ajouter une autorisation"**.
 
 ![alt text](images/image-3.png)
 
@@ -274,7 +274,7 @@ Grâce à la commande ci-dessous, nous allons créer un certificat auto-signé e
 $cert = New-SelfSignedCertificate -Subject "CN=Contoso" -CertStoreLocation "Cert:\CurrentUser\My" -KeyExportPolicy Exportable -KeySpec Signature -KeyLength 2048 -KeyAlgorithm RSA -HashAlgorithm SHA256
 ```
 
-Ensuite, il faut exporter ce certificat sur notre machine, car il va falloir le charger sur Entra ID. En PowerShell toujours, c'est faisable avec la commande "Export-Certificate". Pour ma part, je l'exporte dans "C:\TEMP" mais adaptez le chemin dans la commande ci-dessous.
+Ensuite, il faut exporter ce certificat sur notre machine, car il va falloir le charger sur Identity Platform. En PowerShell toujours, c'est faisable avec la commande "Export-Certificate". Pour ma part, je l'exporte dans "C:\TEMP" mais adaptez le chemin dans la commande ci-dessous.
 
 ```powershell
 Export-Certificate -Cert $cert -FilePath "C:\TEMP\contoso.cer"
@@ -298,7 +298,7 @@ Export-PfxCertificate -Cert $cert -FilePath "C:\temp\Contoso.pfx" -Password $mdp
 
 Une fois que c'est fait, il suffira de **copier le PFX** sur les autres serveurs et de l'importer. Pensez à **stocker le mot de passe de la clé privée** dans votre gestionnaire de mots de passe préféré...
 
-Retournez sur l'interface **Entra ID**, toujours dans notre application, et cliquez sur **"Certificats & secrets"** sur la gauche. Ensuite, cliquez sur **"Télécharger le certificat"** et chargez le fichier CER. Validez et il va apparaître dans la liste des certificats comme ceci :
+Retournez sur l'interface **Identity Platform**, toujours dans notre application, et cliquez sur **"Certificats & secrets"** sur la gauche. Ensuite, cliquez sur **"Télécharger le certificat"** et chargez le fichier CER. Validez et il va apparaître dans la liste des certificats comme ceci :
 
 ![alt text](images/image-8.png)
 
@@ -320,7 +320,7 @@ Connect-MgGraph -ClientID f372ed21-aaaaaa-aaaa-aaaaaaa-bc9ed0092951 -TenantId 5d
 
 Exécutez cette commande, et là, c'est magique on est directement authentifié ! Aucune action n’est nécessaire, c'est la combinaison de ces trois valeurs (et la présence du certificat sur la machine) qui permet de s'authentifier sur Microsoft Graph.
 
-En termes de droits, on est limité à ce qui est déterminé au niveau des autorisations de l'application. Si l'on ajoute des droits à notre application via le portail Entra ID, il faudra se déconnecter et se reconnecter pour que ce soit pris en compte.
+En termes de droits, on est limité à ce qui est déterminé au niveau des autorisations de l'application. Si l'on ajoute des droits à notre application via le portail Identity Platform, il faudra se déconnecter et se reconnecter pour que ce soit pris en compte.
 
 ```powershell
 Disconnect-MgGraph
