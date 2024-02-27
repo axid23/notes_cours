@@ -362,6 +362,26 @@ En complément, vous pouvez retrouver des informations sur cette page qui réfé
 
 - [Microsoft Docs - Référentiel des permissions]
 
+## Mise en pratique
+
+### Ajout de licence 365 à un utilisateur en omettant une partie des applications
+
+Source : [Microsoft Learn : Set-MgUserLicense]
+
+```powershell
+Connect-MgGraph -ClientID f372ed21-aaaa-bbb-cccc-bc9ed0092951 -TenantId 5dc633bf-aaaa-bbbb-ccccc-b8b7ab6f80fb -CertificateThumbprint 5B5EB9E5942C0EqsdqsdqzaedazedAF971D273879591
+
+$EmsSku = Get-MgSubscribedSku -All | Where SkuPartNumber -eq 'SPE_E5'
+$disabledPlans = $EmsSku.ServicePlans | where ServicePlanName -in ("SWAY", "POWER_BI_STANDARD", "RMS_S_ENTERPRISE ") | Select -ExpandProperty ServicePlanId
+$addLicenses = @(
+  @{SkuId = $EmsSku.SkuId
+  DisabledPlans = $disabledPlans
+  }
+  )
+Get-MgUser
+Set-MgUserLicense -UserId 'c350720b-1738-4cab-b74a-4f77a7767a7a' -AddLicenses $addLicenses -RemoveLicenses @()
+```
+
 Document rédigé grâce au site [Microsoft Learn] et [IT-Connect]
 
 axid - 27/02/24
@@ -372,3 +392,4 @@ axid - 27/02/24
 [PowerShell Gallery]: https://www.powershellgallery.com/
 [IT-Connect]: https://www.it-connect.fr/powershell-comment-se-connecter-a-microsoft-graph-api/
 [Microsoft Docs - Référentiel des permissions]: https://docs.microsoft.com/fr-fr/graph/permissions-reference?WT.mc_id=AZ-MVP-5004580
+[Microsoft Learn : Set-MgUserLicense]: https://learn.microsoft.com/en-us/powershell/module/microsoft.graph.users.actions/set-mguserlicense?view=graph-powershell-1.0
