@@ -364,7 +364,7 @@ En complément, vous pouvez retrouver des informations sur cette page qui réfé
 
 Document rédigé grâce au site [Microsoft Learn] et [IT-Connect]
 
-Axel RONDEAU - 27/02/24
+axid - 27/02/24
 
 [Microsoft Learn]: https://learn.microsoft.com/fr-fr/graph/overvie
 [Microsoft Graph]: https://graph.microsoft.com
