@@ -371,6 +371,11 @@ Si vous êtes utilisateurs de Microsoft Online et de AzureAD via PowerShell, Mic
 
 Source : [Microsoft Learn : Set-MgUserLicense]
 
+Les permissions à inclure lors de la connexion à MgGraph :
+
+- User.ReadWrite.All
+- Organization.Read.All
+
 ```powershell
 Connect-MgGraph -ClientID f372ed21-aaaa-bbb-cccc-bc9ed0092951 -TenantId 5dc633bf-aaaa-bbbb-ccccc-b8b7ab6f80fb -CertificateThumbprint 5B5EB9E5942C0EqsdqsdqzaedazedAF971D273879591
 
