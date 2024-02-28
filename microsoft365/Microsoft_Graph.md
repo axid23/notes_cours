@@ -362,7 +362,8 @@ En complément, vous pouvez retrouver des informations sur cette page qui réfé
 
 - [Microsoft Docs - Référentiel des permissions]
 
-Si vous êtes utilisateurs de Microsoft Online et de AzureAD via PowerShell, Microsoft à mis en place une page répertoriant les équivalences de commandes MSol et AzureAD pour Graph : [Microsoft Learn : Find Azure AD PowerShell and MSOnline cmdlets in Microsoft Graph PowerShell]
+Si vous êtes utilisateurs de Microsoft Online et de AzureAD via PowerShell, Microsoft à mis en place une page répertoriant les équivalences de commandes MSol et AzureAD pour Graph : 
+- [Microsoft Learn : Find Azure AD PowerShell and MSOnline cmdlets in Microsoft Graph PowerShell]
 
 ## Mise en pratique
 
