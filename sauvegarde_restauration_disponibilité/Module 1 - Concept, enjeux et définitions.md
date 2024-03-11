@@ -109,9 +109,11 @@ situation de crise, il concerne :
    >Le PCA englobe toute l'entreprise, pas seuelement le SI.
 
 ### PRA : Plan de Reprise d'Activité
+
 Regroupe l'ensemble des procédures et moyens
 nécessaires à la
 continuité du système d'information, il comprend :
+
 - La politique ou plan de sauvegarde
 - La gestion du stockage des éléments nécessaires à la restauration
 - La procédure de restauration du système et des données
