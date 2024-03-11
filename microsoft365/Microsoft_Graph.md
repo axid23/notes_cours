@@ -362,11 +362,19 @@ En complément, vous pouvez retrouver des informations sur cette page qui réfé
 
 - [Microsoft Docs - Référentiel des permissions]
 
+Si vous êtes utilisateurs de Microsoft Online et de AzureAD via PowerShell, Microsoft à mis en place une page répertoriant les équivalences de commandes MSol et AzureAD pour Graph : 
+- [Microsoft Learn : Find Azure AD PowerShell and MSOnline cmdlets in Microsoft Graph PowerShell]
+
 ## Mise en pratique
 
 ### Ajout de licence 365 à un utilisateur en omettant une partie des applications
 
 Source : [Microsoft Learn : Set-MgUserLicense]
+
+Les permissions à inclure lors de la connexion à MgGraph :
+
+- User.ReadWrite.All
+- Organization.Read.All
 
 ```powershell
 Connect-MgGraph -ClientID f372ed21-aaaa-bbb-cccc-bc9ed0092951 -TenantId 5dc633bf-aaaa-bbbb-ccccc-b8b7ab6f80fb -CertificateThumbprint 5B5EB9E5942C0EqsdqsdqzaedazedAF971D273879591
@@ -393,3 +401,4 @@ axid - 27/02/24
 [IT-Connect]: https://www.it-connect.fr/powershell-comment-se-connecter-a-microsoft-graph-api/
 [Microsoft Docs - Référentiel des permissions]: https://docs.microsoft.com/fr-fr/graph/permissions-reference?WT.mc_id=AZ-MVP-5004580
 [Microsoft Learn : Set-MgUserLicense]: https://learn.microsoft.com/en-us/powershell/module/microsoft.graph.users.actions/set-mguserlicense?view=graph-powershell-1.0
+[Microsoft Learn : Find Azure AD PowerShell and MSOnline cmdlets in Microsoft Graph PowerShell]: https://learn.microsoft.com/en-us/powershell/microsoftgraph/azuread-msoline-cmdlet-map?view=graph-powershell-1.0
