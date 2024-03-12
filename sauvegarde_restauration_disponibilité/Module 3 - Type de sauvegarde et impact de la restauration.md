@@ -190,7 +190,7 @@ Elle se base sur une incrémentielle, mais va construire une sauvegarde complèt
 
 La restauration d'éléments, que ce soit un fichier, une application, une base de données, ou un système complet est la finalité de tous plan de sauvegarde.
 
->[!CAUTION]Attention
+>[!CAUTION]
 >On n'a jamais de problème de sauvegarde, que des problèmes de restauration !
 
 Les sauvegardes que l'on réalise doivent **OBLIGATOIREMENT ÊTRE TESTÉE** à intervalle régulier.
