@@ -119,8 +119,7 @@ continuité du système d'information, il comprend :
 - La procédure de restauration du système et des données
 - Les licences des différentes application utilisées
 
->[!NOTE]
->Le **plan de reprise d'activité** n'est qu'une des composantes du
-**plan de continuité d'activité**.
+>[!NOTE] 
+Le **plan de reprise d'activité** n'est qu'une des composantes du **plan de continuité d'activité**.
 
 >TP1 - Mise en place de l'environnement

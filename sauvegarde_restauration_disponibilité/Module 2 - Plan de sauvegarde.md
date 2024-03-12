@@ -149,4 +149,4 @@ un serveur"
 - Onglet "sauvegarde et restauration" => =>"Sauvegarder"
 - Valider l'assistant en fonction du type de sauvegarde à réaliser
 
->TP2
+>TP2 - Installation et configuration de Veritas Backup-Exec
