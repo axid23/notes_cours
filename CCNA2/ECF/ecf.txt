@@ -1,0 +1,310 @@
+hostname
+banner motd 'ATTENTION EQUIPEMENT SUPERVISE'
+
+interface serial 0/0/0
+clock rate 64000
+
+172.23.
+255.255.224.0
+
+----------
+SW-CORE
+---------
+
+int r f0/21-22
+channel-group 1 mode desirable
+
+vlan 144
+name Stagiaires
+vlan 244
+name Formateurs
+vlan 344
+name Administratifs
+vlan 444
+name GestionIT
+vlan 544
+name Serveurs
+vlan 80
+name Natif
+
+int r f0/1-4
+switchport mode access
+switchport access vlan 144
+
+int r f0/5-9
+switchport mode access
+switchport access vlan 244
+
+int r f0/10-15
+switchport mode access
+switchport access vlan 344
+
+int f0/20
+switchport mode access
+switchport access vlan 444
+
+int r f0/23-24
+switchport mode access
+switchport access vlan 544
+
+int Port-Channel 1
+switchport mode trunk
+switchport trunk native vlan 80
+switchport trunk allowed vlan 144,244,344,444,544,80
+
+int Port-Channel 2
+switchport mode trunk
+switchport trunk native vlan 80
+switchport trunk allowed vlan 144,244,344,444,544,80
+
+int f0/20
+switchport mode trunk
+switchport trunk native vlan 80
+switchport trunk allowed vlan 144,244,344,444,544,80
+
+int r f0/1-19
+shutdown
+
+int g0/0.144
+encapsulation dot1q 144
+ip address 172.23.0.1 255.255.224.0
+
+int g0/0.244
+encapsulation dot1q 244
+ip address 172.23.32.1 255.255.224.0
+
+int g0/0.344
+encapsulation dot1q 344
+ip address 172.23.64.1 255.255.224.0
+
+int g0/0.444
+encapsulation dot1q 444
+ip address 172.23.96.1 255.255.224.0
+
+int g0/0.544
+encapsulation dot1q 544
+ip address 172.23.128.1 255.255.224.0
+
+------
+FAR
+-------
+int r f0/16-19, g0/1-2
+shutdown
+
+
+
+-----------
+FRANK
+-----------
+int r f0/1-3
+switchport mode access
+switchport access vlan 144
+
+int r f0/4-6
+switchport mode access
+switchport access vlan 244
+
+int r f0/9-12
+switchport mode access
+switchport access vlan 344
+
+int r f0/13-14
+switchport mode access
+switchport access vlan 444
+
+int r f0/16-18
+switchport mode access
+switchport access vlan 544
+
+int Port-Channel 2
+switchport mode trunk
+switchport trunk native vlan 80
+switchport trunk allowed vlan 144,244,344,444,544,80
+
+int r f0/7-8,f0/15,f0/19-24
+shutdown
+
+
+-------------
+CDB
+------------
+
+vlan 135
+name Stagiaires
+vlan 235
+name Formateurs
+vlan 335
+name Administratifs
+vlan 435
+name GestionIT
+vlan 535
+name Serveurs
+vlan 80
+name Natif
+
+int r f0/1-5
+switchport mode access
+switchport access vlan 135
+
+int r f0/6-11
+switchport mode access
+switchport access vlan 235
+
+int r f0/12-15
+switchport mode access
+switchport access vlan 335
+
+int f0/19
+switchport mode access
+switchport access vlan 435
+
+int r f0/16-18
+switchport mode access
+switchport access vlan 535
+
+int g0/1
+switchport mode trunk
+switchport trunk native vlan 80
+switchport trunk allowed vlan 135,235,335,435,535,80
+
+int r f0/20-24,g0/2
+shutdown
+
+int g0/0.135
+encapsulation dot1q 135
+ip address 172.24.31.254 255.255.240.0
+
+int g0/0.235
+encapsulation dot1q 235
+ip address 172.24.63.254 255.255.240.0
+
+int g0/0.335
+encapsulation dot1q 335
+ip address 172.24.95.254 255.255.240.0
+
+int g0/0.435
+encapsulation dot1q 435
+ip address 172.23.127.254 255.255.240.0
+
+int g0/0.535
+encapsulation dot1q 535
+ip address 172.23.159.254 255.255.240.0
+
+ip dhcp excluded-address 172.24.31.254
+ip dhcp pool LAN-STAG-CDB
+network 172.24.16.0 255.255.240.0
+default-router 172.24.31.254
+
+-----
+NIO
+-----
+
+vlan 179
+name Stagiaires
+vlan 279
+name Formateurs
+vlan 379
+name Administratifs
+vlan 479
+name GestionIT
+vlan 80
+name Natif
+
+int r f0/1-5
+switchport mode access
+switchport access vlan 179
+
+int r f0/6-11
+switchport mode access
+switchport access vlan 179
+
+int r f0/12-15
+switchport mode access
+switchport access vlan 379
+
+int f0/16
+switchport mode access
+switchport access vlan 479
+
+int g0/1
+switchport mode trunk
+switchport trunk native vlan 80
+switchport trunk allowed vlan 179,279,379,479,80
+
+int r f0/17-24,g0/2
+shutdown
+
+int g0/0.179
+encapsulation dot1q 179
+ip address 172.25.8.10 255.255.248.0
+
+int g0/0.279
+encapsulation dot1q 279
+ip address 172.25.24.20 255.255.248.0
+
+int g0/0.379
+encapsulation dot1q 379
+ip address 172.25.40.30 255.255.248.0
+
+int g0/0.479
+encapsulation dot1q 479
+ip address 172.25.56.40 255.255.248.0
+
+
+RTR-SH
+
+ip route 0.0.0.0 0.0.0.0 85.12.47.65
+ip route 172.24.16.0 255.255.240.0 110.12.77.114
+ip route 172.24.48.0 255.255.240.0 110.12.77.114
+ip route 172.24.80.0 255.255.240.0 110.12.77.114
+ip route 172.24.112.0 255.255.240.0 110.12.77.114
+ip route 172.24.144.0 255.255.240.0 110.12.77.114
+ip route 172.25.8.0 255.255.248.0 91.41.58.98
+ip route 172.25.24.0 255.255.248.0 91.41.58.98
+ip route 172.25.40.0 255.255.248.0 91.41.58.98
+ip route 172.25.56.0 255.255.248.0 91.41.58.98
+
+RTR-NIO
+
+ip route 0.0.0.0 0.0.0.0 91.41.58.97
+ip route 172.24.16.0 255.255.240.0 91.41.58.97
+ip route 172.24.48.0 255.255.240.0 91.41.58.97
+ip route 172.24.80.0 255.255.240.0 91.41.58.97
+ip route 172.24.112.0 255.255.240.0 91.41.58.97
+ip route 172.24.144.0 255.255.240.0 91.41.58.97
+ip route 172.23.0.0 255.255.240.0 91.41.58.97
+ip route 172.23.32.0 255.255.224.0 91.41.58.97
+ip route 172.23.64.0 255.255.224.0 91.41.58.97
+ip route 172.23.96.0 255.255.224.0 91.41.58.97
+ip route 172.23.128.0 255.255.224.0 91.41.58.97
+
+
+line console 0
+password consopass
+login
+exit
+enable secret privipass
+line vty 0 15
+password telnetpass
+transport input telnet
+login
+exit
+
+conf t
+no enable secret
+enable password privipass
+end
+
+
+no ip route 172.24.16.0 255.255.240.0 91.41.58.97 
+no ip route 172.24.48.0 255.255.240.0 91.41.58.97 
+no ip route 172.24.80.0 255.255.240.0 91.41.58.97 
+no ip route 172.24.112.0 255.255.240.0 91.41.58.97 
+no ip route 172.24.144.0 255.255.240.0 91.41.58.97 
+no ip route 172.23.0.0 255.255.240.0 91.41.58.97 
+no ip route 172.23.32.0 255.255.224.0 91.41.58.97 
+no ip route 172.23.64.0 255.255.224.0 91.41.58.97 
+no ip route 172.23.96.0 255.255.224.0 91.41.58.97 
+no ip route 172.23.128.0 255.255.224.0 91.41.58.97 
+
+
